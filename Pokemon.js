@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import PokemonProfile from './PokemonProfile';
 
 class Pokemon extends Component{
 
@@ -13,7 +11,6 @@ class Pokemon extends Component{
   
         this.state = {
             open: false,
-            currentPokemon: '',
         }
     }
 
@@ -51,21 +48,13 @@ class Pokemon extends Component{
                 onClose={this.handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
-                ref={`${pokemon.name}`}
             >
                 <DialogTitle id="alert-dialog-title">
                     #{`${id}`} {`${pokemon.name}`}
                 </DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        DESCRIPTION
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={this.handleClose} color="primary" autoFocus>
-                        Close
-                    </Button>
-                </DialogActions>
+                <PokemonProfile selectedPokemon={`${pokemon.name}`} handleClose={this.handleClose}/>
+                
+                
             </Dialog>
             </div>
         ); 

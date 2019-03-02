@@ -4,33 +4,33 @@ import Pokemon from './Pokemon';
 class PokemonList extends Component{
     
     constructor(props){
-      super(props);
+        super(props);
 
-      this.state = {
-        species : [],
-        fetched : false,
-        loading : false,
+        this.state = {
+            species : [],
+            fetched : false,
+            loading : false,
       }
     }
 
     componentWillMount() {
-      this.setState({
-        loading : true
-      });
-
-      fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
-      .then(res => res.json())
-      .then(response => {
         this.setState({
-          species : response.results,
-          loading : true,
-          fetched : true
+            loading : true
         });
-      });
+
+        fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
+        .then(res => res.json())
+        .then(response => {
+            this.setState({
+            species : response.results,
+            loading : true,
+            fetched : true
+        });
+        });
     }
   
     render() {
-      const {fetched, species} = this.state;
+        const { fetched, species } = this.state;
     //   let content;
 
     //   let content = fetched ? 
@@ -49,8 +49,8 @@ class PokemonList extends Component{
         <div>
             { fetched ? (
                 <div className="pokemon-species-list"> {
-                    species.map((pokemon,index) => (
-                        <Pokemon key={pokemon.name} id={index+1} pokemon={pokemon}/>)
+                    species.map((pokemon, i) => (
+                        <Pokemon key={pokemon.name} id={i+1} pokemon={pokemon}/>)
                     )
                 }
                 </div>
