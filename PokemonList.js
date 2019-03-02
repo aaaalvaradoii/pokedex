@@ -30,7 +30,7 @@ class PokemonList extends Component{
     }
   
     render() {
-      const {fetched, loading, species} = this.state;
+      const {fetched, species} = this.state;
     //   let content;
 
     //   let content = fetched ? 

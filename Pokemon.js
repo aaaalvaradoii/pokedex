@@ -13,6 +13,7 @@ class Pokemon extends Component{
   
         this.state = {
             open: false,
+            currentPokemon: '',
         }
     }
 
@@ -30,8 +31,6 @@ class Pokemon extends Component{
 
     render(){
         const { pokemon, id } = this.props;
-
-
         console.log('props: ',this.props);
 
         return (
@@ -52,6 +51,7 @@ class Pokemon extends Component{
                 onClose={this.handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
+                ref={`${pokemon.name}`}
             >
                 <DialogTitle id="alert-dialog-title">
                     #{`${id}`} {`${pokemon.name}`}
