@@ -13,7 +13,7 @@ class PokemonList extends Component{
       }
     }
 
-    componentDidMount() {
+    componentWillMount() {
       this.setState({
         loading : true
       });
