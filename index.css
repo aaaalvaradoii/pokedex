@@ -20,7 +20,7 @@ HTML, body{
 }
 
 .pokeapp{
-  padding : 16px;
+  flex-grow: 1;
 }
 
 .pokemon-species-list{

@@ -29,23 +29,20 @@ class PokemonProfile extends Component {
           .then(response => {
             this.setState({
                 selectedPokemon : response,
-                loading : true,
-                fetched : true
             });
             const speciesRequest = `https://pokeapi.co/api/v2/pokemon-species/${selectedPokemon}`; 
                 return fetch(speciesRequest);
           })
           .then(res => res.json())
           .then(response => {
-            // const flavor = response.flavor_text_entries[1].flavor_text;
-            const flavor = response.flavor_text_entries.filter(e => e.language.name === "en").map(e => e.flavor_text)[0]
-            console.log('flav: ',flavor);
+            const description = response.flavor_text_entries.filter(e => e.language.name === "en").map(e => e.flavor_text)[0]
+            console.log('flav: ',description);
             this.setState({
-                description: flavor
+                description: description,
+                loading : true,
+                fetched : true
             });
-          })
-          ;
-          console.log('desc: ',this.state.description);
+          });
     }
 
     render() {
