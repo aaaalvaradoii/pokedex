@@ -18,7 +18,7 @@ class PokemonList extends Component{
         loading : true
       });
 
-      fetch('http://pokeapi.co/api/v2/pokemon?limit=151')
+      fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
       .then(res => res.json())
       .then(response => {
         this.setState({
@@ -31,21 +31,33 @@ class PokemonList extends Component{
   
     render() {
       const {fetched, loading, species} = this.state;
-      let content;
+    //   let content;
 
-      if(fetched){
-        content = <div className="pokemon--species--list">{species.map((pokemon,index)=><Pokemon key={pokemon.name} id={index+1} pokemon={pokemon}/>)}</div>;
-      }
-      else if (loading && !fetched) {
-          content = <p>Loading ...</p>;
-      }
-      else {
-        content = <div/>;
-      }
+    //   let content = fetched ? 
+
+    //   if(fetched){
+    //     content = <div className="pokemon--species--list">{species.map((pokemon,index)=><Pokemon key={pokemon.name} id={index+1} pokemon={pokemon}/>)}</div>;
+    //   }
+    //   else if (loading && !fetched) {
+    //       content = <p>Loading ...</p>;
+    //   }
+    //   else {
+    //     content = <div/>;
+    //   }
 
       return (
         <div>
-            {content}
+            { fetched ? (
+                <div className="pokemon-species-list"> {
+                    species.map((pokemon,index) => (
+                        <Pokemon key={pokemon.name} id={index+1} pokemon={pokemon}/>)
+                    )
+                }
+                </div>
+            ) : (
+                <p>Loading ...</p>
+            )}
+            {/* {content} */}
         </div>
       );
     }

@@ -14,7 +14,7 @@ code {
 }
 
 HTML, body{
-  font-family : sans-serif;
+  /* font-family : sans-serif; */
   background: #e2e1e0;
   text-align : center;
 }
@@ -23,7 +23,7 @@ HTML, body{
   padding : 16px;
 }
 
-.pokemon--species--list{
+.pokemon-species-list{
   display : -webkit-box;
   display : -ms-flexbox;
   display : flex;
@@ -32,14 +32,14 @@ HTML, body{
   padding : 16px 0;
 }
 
-.pokemon--species{
+.pokemon-species{
   -ms-flex-preferred-size : 25%;
   flex-basis : 25%;
   padding : 8px;
   box-sizing: border-box;
 }
 
-.pokemon--species--container{
+.pokemon-species-container{
   padding : 8px;
   background : white;
   cursor : pointer;
