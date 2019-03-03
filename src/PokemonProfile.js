@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class PokemonProfile extends Component {
 
@@ -64,7 +65,9 @@ class PokemonProfile extends Component {
                     </DialogActions>
                     </div>
                     ) : (
-                        <p>Loading ...</p>
+                        <div className="progress">
+                        <CircularProgress color="secondary" />
+                        </div>
                     )}
                 
             </div>  

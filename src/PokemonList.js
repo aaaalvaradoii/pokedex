@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Pokemon from './Pokemon';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class PokemonList extends Component{
     
@@ -55,7 +56,7 @@ class PokemonList extends Component{
                 }
                 </div>
             ) : (
-                <p>Loading ...</p>
+                    <CircularProgress color="secondary"/>
             )}
             {/* {content} */}
         </div>

@@ -8,6 +8,17 @@ HTML, body {
   /* text-align : center; */
 }
 
+.progress {
+  text-align: center;
+  margin: auto;
+  padding: 16px;
+  /* left:0;
+  right:0;
+  top:0;
+  bottom:0; */
+  /* position:fixed; */
+}
+
 .pokeapp {
   flex-grow: 1;
 }
