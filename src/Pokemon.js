@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import PokemonProfile from './PokemonProfile';
@@ -34,7 +33,6 @@ class Pokemon extends Component{
 
     render(){
         const { pokemon, id } = this.props;
-        let image = `../public/sprites/${id}.png`;
         let pokemonName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
 
         return (
@@ -68,7 +66,6 @@ class Pokemon extends Component{
                 <DialogTitle id="alert-dialog-title">
                     #{`${id}`} {`${pokemonName}`}
                 </DialogTitle>
-                <Divider variant="middle" />
                 <PokemonProfile selectedPokemon={`${pokemon.name}`} handleClose={this.handleClose}/>
             </Dialog>
             </div>

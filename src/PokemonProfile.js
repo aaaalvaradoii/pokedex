@@ -4,6 +4,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Divider from '@material-ui/core/Divider';
 
 class PokemonProfile extends Component {
 
@@ -14,7 +15,8 @@ class PokemonProfile extends Component {
             selectedPokemon : [],
             fetched : false,
             loading : false,
-            description : ""
+            description : "",
+            types: []
         }
     }
 
@@ -28,16 +30,18 @@ class PokemonProfile extends Component {
           fetch(`https://pokeapi.co/api/v2/pokemon/${selectedPokemon}`)
           .then(res => res.json())
           .then(response => {
+            let types = response.types.map(e => e.type.name);
             this.setState({
                 selectedPokemon : response,
+                types: types
             });
             const speciesRequest = `https://pokeapi.co/api/v2/pokemon-species/${selectedPokemon}`; 
                 return fetch(speciesRequest);
           })
           .then(res => res.json())
           .then(response => {
-            const description = response.flavor_text_entries.filter(e => e.language.name === "en").map(e => e.flavor_text)[0]
-            console.log('flav: ',description);
+            const description = response.flavor_text_entries.filter(e => e.language.name === "en").map(e => e.flavor_text)[0];
+
             this.setState({
                 description: description,
                 loading : true,
@@ -47,16 +51,24 @@ class PokemonProfile extends Component {
     }
 
     render() {
-        const { fetched, description, loading, selectedPokemon } = this.state;
-
+        const { fetched, description, types, loading, selectedPokemon } = this.state;
+        console.log('TYPES: ',types);
         return (
             <div>
                 { fetched ? (
                     <div>
                     <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        {description}
-                    </DialogContentText>
+                        <DialogContentText>
+                            {selectedPokemon.types.map(e=>(
+                                e.type.name
+                            ))}
+                        </DialogContentText>
+                    </DialogContent>
+                    <Divider variant="middle" />
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            {description}
+                        </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.props.handleClose} color="primary" autoFocus>
