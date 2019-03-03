@@ -34,9 +34,7 @@ class Pokemon extends Component{
 
     render(){
         const { pokemon, id } = this.props;
-        console.log('props: ',this.props);
         let image = `../public/sprites/${id}.png`;
-        console.log('img: ',image);
         let pokemonName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
 
         return (
