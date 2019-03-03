@@ -10,10 +10,10 @@ class App extends Component {
     return (
       <div className="pokeapp">
         <AppBar position="sticky" color="secondary">
-        <Toolbar>
-          <Typography variant="h6" color="inherit">
-            PokeDex - Generation 1
-          </Typography>
+          <Toolbar>
+            <Typography variant="h6" color="inherit">
+              PokeDex - Generation 1
+            </Typography>
           </Toolbar>
         </AppBar>
         <PokemonList />
