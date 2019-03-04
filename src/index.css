@@ -9,7 +9,6 @@ body {
 }
 
 .container {
-    margin-left: 32px;
     margin-right: 0;
 }
 
@@ -36,7 +35,7 @@ body {
 } 
 
 .card {
-    min-width: 175px;
+    min-width: 165px;
     display: flex;
     max-width: 345px;
     margin-left: 12px;
