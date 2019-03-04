@@ -1,8 +1,13 @@
 body {
   margin: 0;
-  padding: 0;
+  /* padding: 0; */
   background: #e2e1e0;
 }
+
+.nowhitespace {
+ margin: 0;
+}
+
 
 .progress {
   text-align: center;

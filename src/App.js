@@ -19,20 +19,21 @@ class App extends Component {
 
   componentWillMount() {
     // set an initial loading state and a 0.5 second timeout first as a workaround to an issue causing Material UI's styling to not render immediately; similar to this issue https://github.com/mui-org/material-ui/issues/8040
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 500);
+    // setTimeout(() => {
+    //   this.setState({ loading: false });
+    // }, 0);
   }
 
   render() {
     let { loading } = this.state;
+    loading = false
     
     return (
-      <div>
+      <div >
         {/* using a ternary operator for conciseness while waiting for the timer to finish */}
-        { (!loading) ? (
+
         <div>
-          <AppBar position="sticky" color="secondary">
+          <AppBar position="sticky" color="secondary" className="nowhitespace">
             <Toolbar>
               <Typography variant="h6" color="inherit">
                 PokeDex - Generation 1
@@ -41,9 +42,7 @@ class App extends Component {
           </AppBar>
           <PokemonList />
         </div>
-        ) : (
-          <LinearProgress color="secondary" className="linear-progress"/>
-        )}
+
       </div>
     );
   }
