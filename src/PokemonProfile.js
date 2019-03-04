@@ -26,63 +26,65 @@ class PokemonProfile extends Component {
 
         this.setState({
             loading : true
-          });
+        });
     
-          fetch(`https://pokeapi.co/api/v2/pokemon/${selectedPokemon}`)
-          .then(res => res.json())
-          .then(response => {
+        fetch(`https://pokeapi.co/api/v2/pokemon/${selectedPokemon}`)
+        .then(res => res.json())
+        .then(response => {
             let types = response.types.map(e => e.type.name);
             this.setState({
                 selectedPokemon : response,
                 types: types
             });
+
             const speciesRequest = `https://pokeapi.co/api/v2/pokemon-species/${selectedPokemon}`; 
                 return fetch(speciesRequest);
-          })
-          .then(res => res.json())
-          .then(response => {
-            const description = response.flavor_text_entries.filter(e => e.language.name === "en").map(e => e.flavor_text)[0];
+        })
+        .then(res => res.json())
+        .then(response => {
+            let description = response.flavor_text_entries.filter(e => e.language.name === "en").map(e => e.flavor_text)[0];
 
             this.setState({
                 description: description,
                 loading : false,
                 fetched : true
             });
-          });
+        });
     }
 
     render() {
-        const { fetched, description, types, loading, selectedPokemon } = this.state;
-        console.log('TYPES: ',types);
+        let { fetched, description, loading, selectedPokemon } = this.state;
+
         return (
             <div >
-                { (fetched && !loading) ? (
-                    <div>
-                        <Divider variant="middle" />
-                        <DialogContent>
-                            {selectedPokemon.types.map((species, i)=> {
-                                return (
-                                    <Chip key={i} className="chip" label={`${species.type.name}`} />
-                                );
-                            })}
-                        </DialogContent>
-                        <DialogContent>
-                            <DialogContentText id="alert-dialog-description">
-                                {description}
-                            </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button onClick={this.props.handleClose} color="primary" autoFocus>
-                                Close
-                            </Button>
-                        </DialogActions>
-                    </div>
+                {
+                    (fetched && !loading) ? (
+                        <div>
+                            <Divider variant="middle" />
+                            <DialogContent>
+                                {selectedPokemon.types.map((species, i)=> {
+                                    return (
+                                        <Chip key={species} className="chip" label={`${species.type.name}`} />
+                                    );
+                                })}
+                            </DialogContent>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    {description}
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={this.props.handleClose} color="primary" autoFocus>
+                                    Close
+                                </Button>
+                            </DialogActions>
+                        </div>
                     ) : (
                         <div className="progress">
                             <CircularProgress color="secondary" />
                         </div>
-                    )}
-                
+                    )
+                }
             </div>  
         )
     }
