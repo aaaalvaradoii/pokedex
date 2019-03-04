@@ -1,5 +1,7 @@
 # pokedex
 
+**Access the website directly at https://aaaalvaradoii.github.io/pokedex/**
+
 **To run locally, just run:**
 ```
 npm install
