@@ -17,7 +17,7 @@ class PokemonProfile extends Component {
             fetched : false,
             loading : true,
             description : "",
-            types: []
+            sprite: ""
         }
     }
 
@@ -34,7 +34,6 @@ class PokemonProfile extends Component {
             let types = response.types.map(e => e.type.name);
             this.setState({
                 selectedPokemon : response,
-                types: types
             });
 
             const speciesRequest = `https://pokeapi.co/api/v2/pokemon-species/${selectedPokemon}`; 
@@ -43,7 +42,7 @@ class PokemonProfile extends Component {
         .then(res => res.json())
         .then(response => {
             let description = response.flavor_text_entries.filter(e => e.language.name === "en").map(e => e.flavor_text)[0];
-            console.log('response: ',response);
+            console.log('response 2: ',response);
 
             this.setState({
                 description: description,
@@ -55,7 +54,6 @@ class PokemonProfile extends Component {
 
     render() {
         let { fetched, description, loading, selectedPokemon } = this.state;
-
         return (
             <div >
                 {
@@ -68,6 +66,10 @@ class PokemonProfile extends Component {
                                         <Chip key={`${species}_${i}`} className="chip" label={`${species.type.name}`} />
                                     );
                                 })}
+                            </DialogContent>
+                            <DialogContent>
+                                <img src={selectedPokemon.sprites.front_default} alt={`${selectedPokemon.name}_sprite`} />
+                                <img src={selectedPokemon.sprites.back_default} alt={`${selectedPokemon.name}_sprite`} />
                             </DialogContent>
                             <DialogContent>
                                 <DialogContentText id="alert-dialog-description">
