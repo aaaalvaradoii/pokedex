@@ -43,6 +43,7 @@ class PokemonProfile extends Component {
         .then(res => res.json())
         .then(response => {
             let description = response.flavor_text_entries.filter(e => e.language.name === "en").map(e => e.flavor_text)[0];
+            console.log('response: ',response);
 
             this.setState({
                 description: description,
@@ -64,7 +65,7 @@ class PokemonProfile extends Component {
                             <DialogContent>
                                 {selectedPokemon.types.map((species, i)=> {
                                     return (
-                                        <Chip key={species} className="chip" label={`${species.type.name}`} />
+                                        <Chip key={`${species}_${i}`} className="chip" label={`${species.type.name}`} />
                                     );
                                 })}
                             </DialogContent>

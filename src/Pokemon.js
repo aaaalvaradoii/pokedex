@@ -33,7 +33,7 @@ class Pokemon extends Component{
     render(){
         const { pokemon, id } = this.props;
         let pokemonNameTransform = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-
+        console.log('pokemon: ',pokemon);
         return (
             <div>
                 <Card className="card">
@@ -43,6 +43,7 @@ class Pokemon extends Component{
                         <div className="pokemon-species">
                             <div className="pokemon-species-container">
                                 <div className="pokemon-species-sprite">
+                                    {/* <img src={require(`../public/sprites/${id}.png`)} alt={`${pokemon.name}`} /> */}
                                     <img src={require(`../public/sprites/${id}.png`)} alt={`${pokemon.name}`} />
                                 </div>
                             </div>
