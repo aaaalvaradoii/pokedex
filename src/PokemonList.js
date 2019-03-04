@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Pokemon from './Pokemon';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 class PokemonList extends Component{
     
@@ -10,26 +10,32 @@ class PokemonList extends Component{
         this.state = {
             species : [],
             fetched : false,
+            loading : true
       }
     }
 
     componentWillMount() {
+        this.setState({
+            loading : true
+        });
+
         fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
         .then(res => res.json())
         .then(response => {
             this.setState({
             species : response.results,
-            fetched : true
+            fetched : true,
+            loading : false
         });
         });
     }
   
     render() {
-        const { fetched, species } = this.state;
+        let { fetched, species, loading } = this.state;
 
         return (
             <div className="container">
-                { fetched ? (
+                { (fetched && !loading )? (
                     <div className="pokemon-species-list"> {
                         species.map((pokemon, i) => (
                             <Pokemon key={pokemon.name} id={i+1} pokemon={pokemon}/>)
@@ -37,7 +43,9 @@ class PokemonList extends Component{
                     }
                     </div>
                 ) : (
-                        <CircularProgress color="secondary"/>
+                    <div>
+                        <LinearProgress color="secondary"/>
+                        </div>
                 )}
             </div>
         );

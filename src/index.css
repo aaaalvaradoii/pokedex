@@ -1,25 +1,17 @@
 body {
   margin: 0;
   padding: 0;
-}
-
-HTML, body {
   background: #e2e1e0;
-  /* text-align : center; */
 }
 
 .progress {
   text-align: center;
-  margin: auto;
   padding: 16px;
-}
-
-.pokeapp {
-  flex-grow: 1;
 }
 
 .container {
   margin-left: 32px;
+  margin-right: 0;
 }
 
 .pokemon-species-list {
@@ -54,4 +46,10 @@ HTML, body {
 
 .sprite {
   width: 100px;
+}
+
+.chip {
+  margin-top: 16px;
+  margin-right: 8px;
+  margin-bottom: -8px;
 }

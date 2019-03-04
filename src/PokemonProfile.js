@@ -5,6 +5,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Divider from '@material-ui/core/Divider';
+import Chip from '@material-ui/core/Chip';
 
 class PokemonProfile extends Component {
 
@@ -14,7 +15,7 @@ class PokemonProfile extends Component {
         this.state = {
             selectedPokemon : [],
             fetched : false,
-            loading : false,
+            loading : true,
             description : "",
             types: []
         }
@@ -44,7 +45,7 @@ class PokemonProfile extends Component {
 
             this.setState({
                 description: description,
-                loading : true,
+                loading : false,
                 fetched : true
             });
           });
@@ -54,31 +55,31 @@ class PokemonProfile extends Component {
         const { fetched, description, types, loading, selectedPokemon } = this.state;
         console.log('TYPES: ',types);
         return (
-            <div>
-                { fetched ? (
+            <div >
+                { (fetched && !loading) ? (
                     <div>
-                    <DialogContent>
-                        <DialogContentText>
-                            {selectedPokemon.types.map(e=>(
-                                e.type.name
-                            ))}
-                        </DialogContentText>
-                    </DialogContent>
-                    <Divider variant="middle" />
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                            {description}
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={this.props.handleClose} color="primary" autoFocus>
-                            Close
-                        </Button>
-                    </DialogActions>
+                        <Divider variant="middle" />
+                        <DialogContent>
+                            {selectedPokemon.types.map((species, i)=> {
+                                return (
+                                    <Chip key={i} className="chip" label={`${species.type.name}`} />
+                                );
+                            })}
+                        </DialogContent>
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+                                {description}
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={this.props.handleClose} color="primary" autoFocus>
+                                Close
+                            </Button>
+                        </DialogActions>
                     </div>
                     ) : (
                         <div className="progress">
-                        <CircularProgress color="secondary" />
+                            <CircularProgress color="secondary" />
                         </div>
                     )}
                 
